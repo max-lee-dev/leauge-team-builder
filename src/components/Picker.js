@@ -20,6 +20,13 @@ function Picker({role}) {
         setPlayerList(list);
         console.log(playerList);
     }, [query]);
+
+    function choosePlayer(player) {
+        setQuery('')
+        setPlayer(player);
+
+    }
+
     return (
         <Box justifyContent={'flex-start'}>
             <VStack marginLeft={20}>
@@ -29,7 +36,7 @@ function Picker({role}) {
                 </Box>
                 <HStack>
                     <Center>
-                        <Button onClick={() => setPlayer('')}>X</Button>
+                        <Button colorScheme='red' onClick={() => setPlayer('')}>X</Button>
                         <Input placeholder="Search" width={'75%'} value={query}
                                onChange={(e) => setQuery(e.target.value)}/>
                     </Center>
@@ -37,7 +44,7 @@ function Picker({role}) {
                 <VStack>
                     {query !== "" && playerList.map((player) => (
                         <Center>
-                            <Button onClick={() => setPlayer(player)}>{player}</Button>
+                            <Button colorScheme={'green'} onClick={() => choosePlayer(player)}>{player}</Button>
                         </Center>
                     ))}
                 </VStack>
@@ -45,5 +52,6 @@ function Picker({role}) {
         </Box>
     );
 }
+
 
 export default Picker;
